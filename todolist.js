@@ -103,6 +103,10 @@ class TodoList {
     this.todos.forEach(cb);
   }
 
+  filter(cb) {
+    return this.todos.filter(cb);
+  }
+
   _validateIndex(index) { // _ in name indicates "private" method
     if (!(index in this.todos)) {
       throw new ReferenceError(`invalid index: ${index}`);
@@ -190,6 +194,8 @@ list.add(todo6);
 console.log(`${list}`);
 */
 
+/*
+// Add a forEach Method
 let todo1 = new Todo("Buy milk");
 let todo2 = new Todo("Clean room");
 let todo3 = new Todo("Go to the gym");
@@ -206,3 +212,25 @@ list.add(todo5);
 list.add(todo6);
 
 list.forEach(todo => console.log(todo.toString()));
+*/
+
+// Add a filter Method
+let todo1 = new Todo("Buy milk");
+let todo2 = new Todo("Clean room");
+let todo3 = new Todo("Go to the gym");
+let todo4 = new Todo("Go shopping");
+let todo5 = new Todo("Feed the cats");
+let todo6 = new Todo("Study for Launch School");
+let list = new TodoList("Today's Todos");
+
+list.add(todo1);
+list.add(todo2);
+list.add(todo3);
+list.add(todo4);
+list.add(todo5);
+list.add(todo6);
+todo1.markDone();
+todo5.markDone();
+
+let doneTodos = list.filter(todo => todo.isDone());
+console.log(doneTodos);
