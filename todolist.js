@@ -104,7 +104,39 @@ class TodoList {
   }
 
   filter(cb) {
-    return this.todos.filter(cb);
+    let newList = new TodoList(this.title);
+    this.todos.forEach(todo => {
+      if(cb(todo)) newList.add(todo);
+    });
+    return newList;
+  }
+
+  findByTitle(title) {
+    return this.filter(todo => todo.title === title).first();
+  }
+
+  markDone(title) {
+    this.findByTitle(title).markDone();
+  }
+
+  allDone() {
+    return this.filter(todo => todo.done);
+  }
+
+  allNotDone() {
+    return this.filter(todo => !todo.done);
+  }
+
+  markAllDone() {
+    return this.forEach(todo => todo.markDone());
+  }
+
+  markAllUndone() {
+    return this.forEach(todo => todo.markUndone());
+  }
+
+  toArray() {
+    return this.todos.slice();
   }
 
   _validateIndex(index) { // _ in name indicates "private" method
@@ -232,5 +264,18 @@ list.add(todo6);
 todo1.markDone();
 todo5.markDone();
 
-let doneTodos = list.filter(todo => todo.isDone());
-console.log(doneTodos);
+// let doneTodos = list.filter(todo => todo.isDone());
+// console.log(doneTodos);
+// console.log(list.filter(todo => todo.isDone()).first());
+
+// More Methods
+list.markAllDone();
+console.log(list.allDone());
+
+list.markAllUndone();
+console.log(list.allNotDone());
+
+console.log(list.findByTitle("Buy milk"));
+list.markDone("Buy milk");
+
+console.log(list.toArray());
