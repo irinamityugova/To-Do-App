@@ -99,6 +99,10 @@ class TodoList {
     return `${title}\n${list}`;
   }
 
+  forEach(cb) {
+    this.todos.forEach(cb);
+  }
+
   _validateIndex(index) { // _ in name indicates "private" method
     if (!(index in this.todos)) {
       throw new ReferenceError(`invalid index: ${index}`);
@@ -106,6 +110,7 @@ class TodoList {
   }
 }
 
+/*
 // Create a TodoList Object
 let list = new TodoList("Today's Todos");
 console.log(list); // TodoList { title: "Today's Todos", todos: [] }
@@ -183,3 +188,21 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 console.log(`${list}`);
+*/
+
+let todo1 = new Todo("Buy milk");
+let todo2 = new Todo("Clean room");
+let todo3 = new Todo("Go to the gym");
+let todo4 = new Todo("Go shopping");
+let todo5 = new Todo("Feed the cats");
+let todo6 = new Todo("Study for Launch School");
+let list = new TodoList("Today's Todos");
+
+list.add(todo1);
+list.add(todo2);
+list.add(todo3);
+list.add(todo4);
+list.add(todo5);
+list.add(todo6);
+
+list.forEach(todo => console.log(todo.toString()));
