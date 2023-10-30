@@ -1,37 +1,4 @@
-// This class represents a todo item and its associated
-// data: the todo title and a flag that shows whether the
-// todo item is done.
-
-class Todo {
-  static DONE_MARKER = "X";
-  static UNDONE_MARKER = " ";
-
-  constructor(title) {
-    this.title = title;
-    this.done = false;
-  }
-
-  toString() {
-    let marker = this.isDone() ? Todo.DONE_MARKER : Todo.UNDONE_MARKER;
-    return `[${marker}] ${this.title}`;
-  }
-
-  markDone() {
-    this.done = true;
-  }
-
-  markUndone() {
-    this.done = false;
-  }
-
-  isDone() {
-    return this.done;
-  }
-
-  getTitle() {
-    return this.title;
-  }
-}
+const Todo = require('./todo.js');
 
 // This class represents a collection of Todo objects.
 // You can perform typical collection-oriented actions
@@ -244,7 +211,7 @@ list.add(todo5);
 list.add(todo6);
 
 list.forEach(todo => console.log(todo.toString()));
-*/
+
 
 // Add a filter Method
 let todo1 = new Todo("Buy milk");
@@ -279,3 +246,6 @@ console.log(list.findByTitle("Buy milk"));
 list.markDone("Buy milk");
 
 console.log(list.toArray());
+*/
+
+module.exports = TodoList;
