@@ -14,7 +14,7 @@ class TodoList {
     if(todo instanceof Todo) {
       this.todos.push(todo);
     } else {
-      console.log('TypeError: can only add Todo objects');
+      throw new TypeError('can only add Todo objects');
     }
   }
 
@@ -73,7 +73,8 @@ class TodoList {
   filter(cb) {
     let newList = new TodoList(this.title);
     this.todos.forEach(todo => {
-      if(cb(todo)) newList.add(todo);
+      let newTodo = Object.assign(new Todo, todo);
+      if(cb(newTodo)) newList.add(newTodo);
     });
     return newList;
   }
